@@ -25,15 +25,15 @@ async function signIn(page) {
 // ---------------------------------------------------------------- PART 1
 // Fill the blanks, push, and watch the report. Do NOT fix it yet.
 
-test("cart badge shows one item after adding a product", async ({ page }) => {
-  await signIn(page);
+// test("cart badge shows one item after adding a product", async ({ page }) => {
+//   await signIn(page);
 
-  await page.getByRole("button", { name: "Add to cart" }).first().click();
+//   await page.getByRole("button", { name: "Add to cart" }).first().click();
 
-  // one-shot read — this is the defect you are here to observe
-  const badge = await page.locator(".shopping_cart_badge").textContent();
-  expect(badge).toBe("1");
-});
+//   // one-shot read — this is the defect you are here to observe
+//   const badge = await page.locator(".shopping_cart_badge").textContent();
+//   expect(badge).toBe("1");
+// });
 
 // ---------------------------------------------------------------- PART 2
 // The correct fix: assert on the LOCATOR, so the assertion retries until the
@@ -43,12 +43,12 @@ test("cart badge shows one item after adding a product", async ({ page }) => {
 // Do not fix PART 1 by raising `retries` — that hides the defect and is an
 // automatic zero for this task.
 
-test.skip("cart badge shows one item after adding a product (fixed)", async ({
+test("cart badge shows one item after adding a product (fixed)", async ({
   page,
 }) => {
   await signIn(page);
 
   await page.getByRole("button", { name: "Add to cart" }).first().click();
 
-  await ________(page.locator(".shopping_cart_badge")).____________("____");
+  await expect(page.locator(".shopping_cart_badge")).toHaveText("1");
 });
